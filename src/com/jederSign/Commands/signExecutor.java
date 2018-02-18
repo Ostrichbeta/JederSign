@@ -20,11 +20,11 @@ public class signExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand (CommandSender sender , Command cmd , String label , String[] args ) {
-        Player player = plugin.getServer().getPlayer( sender.getName() ) ; //將發送者轉換為玩家
-        Location pointTo = player.getEyeLocation() ; //獲取玩家看著的方塊
         if ( cmd.getName().equalsIgnoreCase( "sign" ) ) {
             if ( sender instanceof Player ){
                 //發出者是玩家
+                Player player = plugin.getServer().getPlayer( sender.getName() ) ; //將發送者轉換為玩家
+                Location pointTo = player.getEyeLocation() ; //獲取玩家看著的方塊
                 if ( args.length == 0 ){
                     sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.RED + "參數不足。" );
                     return false ;
