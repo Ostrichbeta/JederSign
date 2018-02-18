@@ -1,0 +1,8 @@
+name: JederSign
+description: 一個輕量的告示牌插件
+main: com.jederSign.Main
+commands:
+  sign:
+    description: JederSign插件的主要指令
+    aliases: [jederSign, js, jes, jsg]
+    ueage: §a用法: /sign <行數> <文本>
