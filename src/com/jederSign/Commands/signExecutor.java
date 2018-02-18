@@ -106,6 +106,7 @@ public class signExecutor implements CommandExecutor {
             {
                 sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.RED + "該指令僅允許玩家執行。" );
             }
+            return false ;
         }
         return false ;
     }
