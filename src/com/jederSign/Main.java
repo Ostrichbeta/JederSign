@@ -7,6 +7,6 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable(){
         getLogger().info( ChatColor.AQUA + "JederSign插件正在載入" );
-        getCommand( "sign" ).setExecutor( new signExecutor( this ));
+        this.getCommand( "sign" ).setExecutor( new signExecutor( this ) );
     }
 }
