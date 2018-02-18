@@ -7,4 +7,4 @@ commands:
   sign:
     description: JederSign插件的主要指令
     aliases: [jederSign, js, jes, jsg]
-    ueage: §a用法: /sign <行數> <文本>
+    usage: §a用法: /sign <行數> <文本>
