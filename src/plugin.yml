@@ -1,6 +1,8 @@
 name: JederSign
 description: 一個輕量的告示牌插件
 main: com.jederSign.Main
+version: 1.0.0
+author: Ostrichbeta Chan
 commands:
   sign:
     description: JederSign插件的主要指令
