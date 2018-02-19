@@ -60,7 +60,15 @@ public class signExecutor implements CommandExecutor {
                             //甚麼問題都沒有，終於可以設置了
                             //沒有輸入任何內容
                             Sign sign = (Sign) block.getState() ;
-                            int lineNum = Integer.valueOf( args[0] ) ;
+                            int lineNum ;
+                            try {
+                                lineNum = Integer.valueOf( args[0] ) ;
+                                //嘗試去獲取行號
+                            } catch ( Exception e ) {
+                                sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.RED + "行號不合法，必須是數字。" );
+                                System.err.println( e );
+                                return true;
+                            }
                             //獲取玩家的行號
                             if ( lineNum < 0 || lineNum > 3 ) {
                                 //行號不是0到3的數字
