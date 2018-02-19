@@ -20,11 +20,13 @@ public class signExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand (CommandSender sender , Command cmd , String label , String[] args ) {
-        if ( cmd.getName().equalsIgnoreCase( "sign" ) ) {
+        if ( cmd.getName().equalsIgnoreCase( "sign" ) || cmd.getName().equalsIgnoreCase( "jederSign" ) || cmd.getName().equalsIgnoreCase( "js" ) || cmd.getName().equalsIgnoreCase( "jes" ) || cmd.getName().equalsIgnoreCase( "jsg" ) ) {
             if ( sender instanceof Player ){
                 //發出者是玩家
                 Player player = plugin.getServer().getPlayer( sender.getName() ) ; //將發送者轉換為玩家
-                Location pointTo = player.getEyeLocation() ; //獲取玩家看著的方塊
+                Block block = player.getTargetBlock( null , 10 ) ; //獲取玩家看著的方塊
+                Location pointTo = block.getLocation() ;
+                System.out.println( pointTo.getX() + "," + pointTo.getY() + "," + pointTo.getZ() + "," + block.getType() );
                 if ( args.length == 0 ){
                     sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.RED + "參數不足。" );
                     return false ;
@@ -37,8 +39,7 @@ public class signExecutor implements CommandExecutor {
                 }
                 else {
                     //參數符合了
-                    Block block = pointTo.getBlock() ;
-                    if ( !block.getType().equals( Material.SIGN ) || !block.getType().equals( Material.SIGN_POST ) ) {
+                    if ( !block.getType().equals( Material.SIGN ) && !block.getType().equals( Material.SIGN_POST ) && !block.getType().equals( Material.WALL_SIGN ) ) {
                         //當玩家指向的位置不是告示牌
                         sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.RED + "你需要指向一個告示牌！" );
                         return true ;
@@ -72,6 +73,7 @@ public class signExecutor implements CommandExecutor {
                                     sign.setLine( lineNum , "" );
                                     //清除該行
                                     sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.GREEN + "成功清除該行。" );
+                                    sign.update(); //更新塊狀態
                                     return true ;
                                 }
                                 else {
@@ -86,6 +88,7 @@ public class signExecutor implements CommandExecutor {
                                         //將所有的&當作§識別
                                         sign.setLine( lineNum , text );
                                         sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.GREEN + "成功將該行文字設為 " + ChatColor.RESET + text + ChatColor.GREEN + " 。" );
+                                        sign.update(); //更新塊狀態
                                         return true ;
                                     }
                                     else if ( args.length == 2 ){
@@ -94,6 +97,7 @@ public class signExecutor implements CommandExecutor {
                                         //將所有的&當作§識別
                                         sign.setLine( lineNum , text );
                                         sender.sendMessage( ChatColor.YELLOW + "[JederSign] " + ChatColor.GREEN + "成功將該行文字設為 " + ChatColor.RESET + text + ChatColor.GREEN + " 。" );
+                                        sign.update(); //更新塊狀態
                                         return true ;
                                     }
                                 }
